@@ -31,6 +31,11 @@
       rivc-delivery 2021
     </a-layout-footer>
   </div>
+  <teleport to="body">
+    <a-modal v-model:visible="visible" title="Регистрация" :footer="null">
+      <login/>
+    </a-modal>
+  </teleport>
 </template>
 
 <script setup lang="ts">
@@ -38,8 +43,10 @@ import { ref, watch, computed } from 'vue';
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { ShoppingCartOutlined } from '@ant-design/icons-vue'
+import Login from "../components/Login.vue";
 const store = useStore()
 const route = useRoute()
+const visible = ref<boolean>(false)
 const current = ref<Array<String>>([route.path])
 const cartCount = computed(() => Object.keys(store.getters['getCart']).length)
 watch(route, (newVal, oldVal) => {
@@ -47,7 +54,7 @@ watch(route, (newVal, oldVal) => {
 })
 </script>
 
-<style>
+<style lang="scss">
 .content-wrapper {
  flex: 1 1 auto;
 }

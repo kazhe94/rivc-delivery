@@ -1,6 +1,9 @@
 <template>
   <div style="padding: 20px;">
-    <a-typography-title :level="3" class="page-title">{{ pageTitle }}</a-typography-title>
+    <a-row justify="space-between" align="middle">
+      <a-typography-title :level="3" class="page-title">{{ pageTitle }}</a-typography-title>
+      <slot name="controls"></slot>
+    </a-row>
     <slot></slot>
   </div>
 </template>
